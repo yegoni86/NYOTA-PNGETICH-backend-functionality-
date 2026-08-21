@@ -1,7 +1,6 @@
 {
   "name": "nyota-pngetich",
   "version": "1.0.0",
-  "description": "NYOTA Application Portal",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f32">
+
+<title>NYOTA FUNDS - Success</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(34,197,94,.35), transparent 28%),
+        radial-gradient(circle at 90% 90%, rgba(59,130,246,.35), transparent 28%),
+        linear-gradient(135deg,#064e3b,#1e40af);
+}
+
+.container{
+    width:100%;
+    max-width:460px;
+}
+
+.card{
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.28);
+    text-align:center;
+}
+
+.header{
+    background:linear-gradient(135deg,#087f32,#2563EB);
+    color:#fff;
+    padding:28px 20px;
+}
+
+.success{
+    width:74px;
+    height:74px;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#E8F5E9;
+    color:#16A34A;
+    font-size:38px;
+    font-weight:bold;
+}
+
+.header h1{
+    font-size:28px;
+}
+
+.content{
+    padding:24px;
+}
+
+.content p{
+    color:#4B5563;
+    line-height:1.7;
+    margin:14px 0;
+}
+
+.content b{
+    color:#087f32;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:22px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#16A34A,#087f32);
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(22,163,74,.25);
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.footer{
+    margin-top:18px;
+    color:#64748B;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="header">
+
+<div class="success">✓</div>
+
+<h1>Payment Successful</h1>
+
+</div>
+
+<div class="content">
+
+<p>
+Congratulations <b><span id="name">Applicant</span></b>!
+</p>
+
+<p>Your payment has been received successfully.</p>
+
+<p>Your NYOTA FUNDS application has been submitted successfully.</p>
+
+<p>
+Our team is now verifying your application. You will receive further communication once verification is complete.
+</p>
+
+<button onclick="finish()">
+Finish
+</button>
+
+<div class="footer">
+🔒 Thank you for choosing NYOTA FUNDS
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+// Load the applicant's name from Step 1
+const applicant =
+    localStorage.getItem("fullname") ||
+    localStorage.getItem("fullName") ||
+    localStorage.getItem("applicantName") ||
+    "Applicant";
+
+document.getElementById("name").textContent = applicant;
+
+function finish(){
+    alert("Thank you for choosing NYOTA FUNDS.");
+}
+</script>
+
+</body>
+</html>

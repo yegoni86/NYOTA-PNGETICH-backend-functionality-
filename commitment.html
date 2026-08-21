@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087f32">
+<meta name="theme-color" content="#087F32">
 <title>NYOTA Funds - Commitment Fee</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI",Arial,sans-serif;
+    font-family:"Inter",sans-serif;
 }
 
 body{
@@ -19,128 +21,234 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
+    padding:18px;
     background:
-        radial-gradient(circle at 10% 10%, rgba(34,197,94,.35), transparent 28%),
-        radial-gradient(circle at 90% 90%, rgba(59,130,246,.35), transparent 28%),
-        linear-gradient(135deg,#064e3b,#1e40af);
+        radial-gradient(circle at top left,rgba(34,197,94,.18),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(37,99,235,.18),transparent 35%),
+        linear-gradient(135deg,#f8fafc,#eef6ff);
 }
 
 .container{
     width:100%;
-    max-width:450px;
+    max-width:420px;
 }
 
 .card{
     background:#fff;
-    border-radius:22px;
+    border-radius:24px;
     overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,.28);
+    box-shadow:0 20px 50px rgba(15,23,42,.14);
 }
 
+/* Header */
+
 .header{
-    background:linear-gradient(135deg,#087f32,#2563EB);
-    color:#fff;
+    background:linear-gradient(145deg,#087F32,#2563EB);
+    padding:26px 22px 46px;
     text-align:center;
-    padding:26px 20px;
+    position:relative;
+    color:white;
+}
+
+.badge{
+    position:absolute;
+    left:50%;
+    bottom:-26px;
+    transform:translateX(-50%);
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.badge svg{
+    width:26px;
+    height:26px;
+    stroke:#087F32;
 }
 
 .header h1{
     font-size:26px;
-    margin-bottom:6px;
+    font-weight:700;
 }
 
 .header p{
-    opacity:.92;
+    margin-top:5px;
+    font-size:14px;
+    color:#E5F3FF;
 }
+
+/* Content */
 
 .content{
-    padding:22px;
+    padding:38px 22px 22px;
 }
 
-.info-box{
+.notice{
     background:#F0FDF4;
-    border-left:5px solid #16A34A;
-    border-radius:12px;
-    padding:16px;
+    border:1px solid #BBF7D0;
+    border-radius:16px;
+    padding:15px;
+    font-size:14px;
     line-height:1.6;
-    color:#374151;
+    color:#166534;
     margin-bottom:20px;
 }
 
 .details{
-    background:#F8FAFC;
-    border:1px solid #E5E7EB;
-    border-radius:12px;
-    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
 }
 
-.details p{
+.row{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:12px 0;
-    font-size:15px;
+    padding:12px 14px;
+    background:#F8FAFC;
+    border:1px solid #E5E7EB;
+    border-radius:14px;
 }
 
-.details span{
-    color:#087f32;
-    font-weight:bold;
+.left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    color:#475569;
 }
 
-.fee-box{
-    margin-top:18px;
-    background:#EFF6FF;
-    border-left:5px solid #2563EB;
+.icon{
+    width:36px;
+    height:36px;
     border-radius:12px;
-    padding:16px;
-    text-align:center;
+    background:linear-gradient(135deg,#DCFCE7,#DBEAFE);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
 }
 
-.fee-box strong{
-    font-size:24px;
-    color:#2563EB;
+.value{
+    font-size:14px;
+    font-weight:600;
+    color:#0F172A;
 }
+
+/* Payment Box */
+
+.payment-box{
+    background:linear-gradient(145deg,#087F32,#2563EB);
+    color:white;
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 12px 28px rgba(37,99,235,.22);
+}
+
+.payment-box small{
+    display:block;
+    font-size:12px;
+    opacity:.9;
+}
+
+.payment-box strong{
+    display:block;
+    margin-top:4px;
+    font-size:26px;
+    font-weight:700;
+}
+
+/* Premium Button */
 
 button{
     width:100%;
-    padding:16px;
-    margin-top:22px;
+    padding:19px;
     border:none;
-    border-radius:14px;
-    background:linear-gradient(135deg,#16A34A,#087f32);
-    color:#fff;
-    font-size:17px;
+    border-radius:18px;
+    background:linear-gradient(145deg,#16A34A,#087F32);
+    color:white;
+    font-size:18px;
     font-weight:700;
     cursor:pointer;
-    box-shadow:0 10px 25px rgba(22,163,74,.25);
+    position:relative;
+    overflow:hidden;
+    transition:.25s ease;
+    box-shadow:0 14px 32px rgba(22,163,74,.35);
+}
+
+button::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-20deg);
+    transition:left .6s ease;
 }
 
 button:hover{
     transform:translateY(-2px);
+    box-shadow:0 18px 40px rgba(22,163,74,.45);
+}
+
+button:hover::before{
+    left:140%;
+}
+
+button:active{
+    transform:scale(.98);
 }
 
 button:disabled{
     opacity:.6;
     cursor:not-allowed;
     transform:none;
+    box-shadow:none;
 }
+
+/* Status */
 
 #status{
-    min-height:24px;
-    margin-top:15px;
+    margin-top:14px;
+    font-size:13px;
     text-align:center;
-    font-size:14px;
+    min-height:22px;
+    padding:8px;
+    border-radius:10px;
 }
 
-.success{color:#15803D;}
-.error{color:#DC2626;}
+.success{
+    background:#ECFDF5;
+    color:#15803D;
+}
+
+.error{
+    background:#FEF2F2;
+    color:#DC2626;
+}
+
+/* Footer */
 
 .footer{
-    text-align:center;
+    display:flex;
+    justify-content:space-between;
     margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid #E5E7EB;
+    font-size:11px;
     color:#64748B;
-    font-size:12px;
+    flex-wrap:wrap;
+    gap:8px;
 }
 </style>
 </head>
@@ -152,33 +260,67 @@ button:disabled{
 <div class="card">
 
 <div class="header">
-<h1>NYOTA FUNDS</h1>
+
+<h1>NYOTA Funds</h1>
 <p>Commitment Fee Payment</p>
+
+<div class="badge">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+<path d="M12 3L19 6V11C19 16 15.5 19.8 12 21C8.5 19.8 5 16 5 11V6L12 3Z"/>
+</svg>
+</div>
+
 </div>
 
 <div class="content">
 
-<div class="info-box">
+<div class="notice">
 To complete your NYOTA Funds application, a **Customer Commitment Fee of KSh 900** is required. Once payment is confirmed, your application will proceed to the final processing stage.
 </div>
 
 <div class="details">
-<p><b>Applicant</b><span id="fullName">Applicant</span></p>
-<p><b>Phone</b><span id="phone">Not available</span></p>
-<p><b>Selected Amount</b><span>KSh <span id="fund">22,000</span></span></p>
+
+<div class="row">
+<div class="left">
+<div class="icon">👤</div>
+<div>Applicant</div>
+</div>
+<div class="value" id="fullName">Applicant</div>
 </div>
 
-<div class="fee-box">
-Customer Commitment Fee<br>
+<div class="row">
+<div class="left">
+<div class="icon">📞</div>
+<div>Phone</div>
+</div>
+<div class="value" id="phone">Not available</div>
+</div>
+
+<div class="row">
+<div class="left">
+<div class="icon">💰</div>
+<div>Selected Amount</div>
+</div>
+<div class="value">KSh <span id="fund">22,000</span></div>
+</div>
+
+</div>
+
+<div class="payment-box">
+<small>Customer Commitment Fee</small>
 <strong>KSh 900</strong>
 </div>
 
-<button id="payBtn" onclick="payService()">Pay Commitment Fee</button>
+<button id="payBtn" onclick="payService()">
+Pay Commitment Fee →
+</button>
 
 <div id="status"></div>
 
 <div class="footer">
-🔒 Secure STK Push • Payment Confirmation
+<span>🔒 SSL Secure</span>
+<span>M-PESA STK Push</span>
+<span>Protected</span>
 </div>
 
 </div>
@@ -221,7 +363,7 @@ statusEl.className=type;
 
 function setLoading(state,text){
 payBtn.disabled=state;
-payBtn.textContent=state?text:"Pay Commitment Fee";
+payBtn.textContent=state?text:"Pay Commitment Fee →";
 }
 
 async function readJson(res){

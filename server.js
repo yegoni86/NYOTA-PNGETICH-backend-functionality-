@@ -2,58 +2,89 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-/* STK Push */
+// STK Push
 app.post("/stk-push", async (req, res) => {
   try {
     const { phone, amount } = req.body;
 
-    if (!phone || !amount) {
+    const response = await fetch(
+      "https://api.paylorke.com/api/v1/merchants/payments/stk-push",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.PAYLOR_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          phone,
+          amount: Number(amount),
+          reference: "NYOTA-" + Date.now(),
+          channelId: process.env.PAYLOR_CHANNEL_ID,
+          description: "NYOTA Funds Payment",
+          callbackUrl: process.env.CALLBACK_URL
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
       return res.status(400).json({
         success: false,
-        message: "Phone and amount are required."
+        message: data.message || "STK Push failed."
       });
     }
 
-    // Replace this section with your Daraja or PayHero API request.
-    // Example response for testing:
-    return res.json({
+    res.json({
       success: true,
-      transactionId: "TEST_" + Date.now(),
-      message: "STK Push request received."
+      transactionId: data.transactionId,
+      data
     });
 
   } catch (error) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "Server error."
+      message: "Failed to send STK Push."
     });
   }
 });
 
-/* Payment Status */
+// Payment Status
 app.post("/payment-status", async (req, res) => {
   try {
     const { transactionId } = req.body;
 
-    return res.json({
+    const response = await fetch(
+      `https://api.paylorke.com/api/v1/merchants/payments/transactions/${transactionId}`,
+      {
+        headers: {
+          "Authorization": `Bearer ${process.env.PAYLOR_API_KEY}`
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    res.json({
       success: true,
       data: {
-        transactionId,
-        status: "PENDING"
+        status: data.status,
+        reference: data.reference
       }
     });
 
@@ -61,7 +92,7 @@ app.post("/payment-status", async (req, res) => {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "Server error."
+      message: "Failed to check payment status."
     });
   }
 });

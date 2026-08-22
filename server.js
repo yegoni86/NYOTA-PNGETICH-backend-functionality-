@@ -26,7 +26,7 @@ app.post("/stk-push", async (req, res) => {
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.PAYLOR_API_KEY}`,
+          Authorization: `Bearer ${process.env.PAYLOR_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -43,7 +43,7 @@ app.post("/stk-push", async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(400).json({
+      return res.status(response.status).json({
         success: false,
         message: data.message || "STK Push failed."
       });
@@ -55,16 +55,16 @@ app.post("/stk-push", async (req, res) => {
       data
     });
 
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     res.status(500).json({
       success: false,
-      message: "Failed to send STK Push."
+      message: "Server error."
     });
   }
 });
 
-// Payment Status
+// Transaction status
 app.post("/payment-status", async (req, res) => {
   try {
     const { transactionId } = req.body;
@@ -73,7 +73,7 @@ app.post("/payment-status", async (req, res) => {
       `https://api.paylorke.com/api/v1/merchants/payments/transactions/${transactionId}`,
       {
         headers: {
-          "Authorization": `Bearer ${process.env.PAYLOR_API_KEY}`
+          Authorization: `Bearer ${process.env.PAYLOR_API_KEY}`
         }
       }
     );
@@ -88,13 +88,18 @@ app.post("/payment-status", async (req, res) => {
       }
     });
 
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed to check payment status."
+      message: "Status check failed."
     });
   }
+});
+
+// Paylor callback
+app.post("/callback", (req, res) => {
+  console.log("Paylor callback:", req.body);
+  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {

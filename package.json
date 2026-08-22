@@ -6,9 +6,8 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
-  },
-  "engines": {
-    "node": ">=20"
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^3.3.2"
   }
 }
